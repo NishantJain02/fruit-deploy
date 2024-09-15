@@ -1,19 +1,18 @@
+// src/components/LoginPage.js
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { loginUser } from '../api';
-import '../styles.css';
+import { useNavigate, Link } from 'react-router-dom'; // Import Link for navigation
+import '../styles.css';  // Correct path to styles.css
 
 const LoginPage = () => {
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
-    try {
-      const response = await loginUser({ username: userId, password });
-      localStorage.setItem('token', response.token); // Store token in localStorage
-      navigate('/home');
-    } catch (error) {
+  const handleLogin = () => {
+    // Dummy login check
+    if (userId === 'user' && password === 'password') {
+      navigate('/home'); // Use navigate to redirect
+    } else {
       alert('Invalid credentials');
     }
   };
@@ -22,11 +21,11 @@ const LoginPage = () => {
     <div className="login-container">
       <h1>Login</h1>
       <input
-        type="text"
-        placeholder="Username"
+        type="user-name"
+        placeholder="username"
         value={userId}
         onChange={(e) => setUserId(e.target.value)}
-        aria-label="Username"
+        aria-label="Email Address"
       />
       <input
         type="password"
